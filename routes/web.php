@@ -23,6 +23,10 @@ Route::get('category/{id}','CategoryHomeController@getListCategory');
 Route::get('detail/{id}','CategoryHomeController@getDetailNews');
 Route::get('admin/login','LoginController@getLogin');
 Route::post('admin/login','LoginController@postLogin');
+Route::get('register','HomeController@getRegister');
+Route::post('register','HomeController@postRegister');
+Route::get('login','HomeController@getLogin');
+Route::post('login','HomeController@postLogin');
 Route::group(['prefix'=>'admin','middleware'=>'adminLogin'], function(){
 	Route::group(['prefix'=>'category'], function(){
 		Route::get('list','CategoryController@getListCategory');

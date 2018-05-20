@@ -37,13 +37,14 @@
 
     	<!-- slider -->
     	<div class="row carousel-holder">
-    		<div class="col-md-4"></div>
-            <div class="col-md-4">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
                 <div class="panel panel-default">
-				  	<div class="panel-heading">Đăng nhập</div>
+				  	<div class="panel-heading">Đăng ký tài khoản</div>
 				  	<div class="panel-body">
-				    	<form action="login" method="post">
-                            <input type="hidden" name="_token" value="{{csrf_token()}}" />
+				    	<form action="register" method="post">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                             <div class="row">
                                 @if(count($errors)>0)
                                     <div class="alert alert-danger">
@@ -60,31 +61,43 @@
                                     </div>
                                 @endif
                             </div>
+				    		<div>
+				    			<label>Họ tên</label>
+							  	<input type="text" class="form-control" placeholder="Username" name="name" aria-describedby="basic-addon1">
+							</div>
+							<br>
 							<div>
 				    			<label>Email</label>
-							  	<input type="email" class="form-control" placeholder="Email" name="email" 
+							  	<input type="email" class="form-control" placeholder="Email" name="email" aria-describedby="basic-addon1"
 							  	>
 							</div>
 							<br>	
 							<div>
-				    			<label>Mật khẩu</label>
-							  	<input type="password" class="form-control" name="password">
+								<input type="checkbox" class="" name="checkpassword">
+				    			<label>Nhập mật khẩu</label>
+							  	<input type="password" class="form-control" name="password" aria-describedby="basic-addon1">
 							</div>
 							<br>
-							<button type="submit" class="btn btn-default">Đăng nhập
+							<div>
+				    			<label>Nhập lại mật khẩu</label>
+							  	<input type="password" class="form-control" name="passwordAgain" aria-describedby="basic-addon1">
+							</div>
+							<br>
+							<button type="submit" class="btn btn-default">Đăng ký
 							</button>
+
 				    	</form>
 				  	</div>
 				</div>
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-md-2">
+            </div>
         </div>
         <!-- end slide -->
     </div>
     <!-- end Page Content -->
 
- 
-    <!-- end Footer -->
+
     <!-- jQuery -->
     <script src="front/js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->

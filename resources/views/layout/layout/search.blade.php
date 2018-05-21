@@ -6,7 +6,12 @@
         <div class="col-md-9 ">
             <div class="panel panel-default">
                 <div class="panel-heading" style="background-color:#337AB7; color:white;">
-                    <h4><b>{{$type->type_nname}}</b></h4>
+                	<?php 
+			            function changeColor($str, $key){
+			                return str_replace($key, "<span style='color:red;'>$key</span>", $str);
+			            }
+			        ?>
+                    <h4><b>Tìm kiếm:{{$key}}</b></h4>
                 </div>
 				@foreach($news as $n)
 	                <div class="row-item row">
@@ -19,16 +24,13 @@
 	                    </div>
 
 	                    <div class="col-md-9">
-	                        <h3>{{$n->title}}</h3>
-	                        <p>{!!$n->summary!!}</p>
-	                        <a class="btn btn-primary" href="detail/{{$n->id}}">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+	                        <h3>{!! changeColor($n->title,$key) !!}</h3>
+	                        <p>{!!changeColor($n->summary,$key)!!}</p>
+	                        <a class="btn btn-primary" href="detail.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
 	                    </div>
 	                    <div class="break"></div>
 	                </div>
 	            @endforeach
-	            	<div class="text-center">
-						{{$news->links()}}
-	            	</div>
             </div>
         </div> 
 

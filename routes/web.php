@@ -27,6 +27,11 @@ Route::get('register','HomeController@getRegister');
 Route::post('register','HomeController@postRegister');
 Route::get('login','HomeController@getLogin');
 Route::post('login','HomeController@postLogin');
+Route::get('logout','HomeController@getLogout');
+Route::get('account','HomeController@getAccount');
+Route::post('account','HomeController@postAccount');
+Route::post('comment/{id}','HomeController@postComment');
+Route::post('search','HomeController@postSearch');
 Route::group(['prefix'=>'admin','middleware'=>'adminLogin'], function(){
 	Route::group(['prefix'=>'category'], function(){
 		Route::get('list','CategoryController@getListCategory');

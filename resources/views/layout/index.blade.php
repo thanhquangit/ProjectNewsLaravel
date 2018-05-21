@@ -17,9 +17,9 @@
 	            		<!-- item -->
 					    <div class="row-item row">
 		                	<h3>
-		                		<a href="category.html">{{$ct->category_name}}</a> |
+		                		<a href="#">{{$ct->category_name}}</a> |
 		                		@foreach($ct->type as $t) 	
-		                			<small><a href="category.html"><i>{{$t->type_nname}}</i></a>/</small>
+		                			<small><a href="category/{{$ct->id}}"><i>{{$t->type_nname}}</i></a>/</small>
 		                		@endforeach
 		                	</h3>
 		                	<?php
@@ -30,7 +30,7 @@
 		                	@if($first != null)
 			                	<div class="col-md-8 border-right">
 			                		<div class="col-md-5">
-				                        <a href="detail.html">
+				                        <a href="detail/{{$first->id}}">
 				                            <img class="img-responsive" src="upload/tintuc/{{$first['image']}}" alt="">
 				                        </a>
 				                    </div>
@@ -38,7 +38,7 @@
 				                    <div class="col-md-7">
 				                        <h3>{{$first['title']}}</h3>
 				                        <p>{{$first['summary']}}</p>
-				                        <a class="btn btn-primary" href="detail.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a class="btn btn-primary" href="detail/{{$first['id']}}">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
 									</div>
 
 			                	</div>
@@ -46,7 +46,7 @@
 
 							<div class="col-md-4">
 								@foreach($data as $dt)
-									<a href="detail.html">
+									<a href="detail/{{$dt->id}}">
 										<h4>
 											<img src="upload/tintuc/{{$dt['image']}}" width="20" height="20" /> 
 											{{$dt->title}}

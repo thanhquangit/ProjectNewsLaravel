@@ -8,42 +8,36 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Laravel Tin Tức</a>
+            <a class="navbar-brand" href="/">Laravel Tin Tức</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="#">Giới thiệu</a>
-                </li>
-                <li>
-                    <a href="#">Liên hệ</a>
-                </li>
-            </ul>
-            <form class="navbar-form navbar-left" role="search">
+            
+            <form class="navbar-form navbar-left" role="search" action="search" method="post">
+                <input type="hidden" name="_token" value="{{csrf_token()}}">
 		        <div class="form-group">
-		          <input type="text" class="form-control" placeholder="Search">
+		          <input type="text" class="form-control" placeholder="Search" name="key">
 		        </div>
-		        <button type="submit" class="btn btn-default">Submit</button>
+		        <button type="submit" class="btn btn-default">Tìm kiếm</button>
 		    </form>
 
 		    <ul class="nav navbar-nav pull-right">
                 @if(!Auth::check())
                 <li>
-                    <a href="#">Đăng ký</a>
+                    <a href="register">Đăng ký</a>
                 </li>
                 <li>
-                    <a href="#">Đăng nhập</a>
+                    <a href="login">Đăng nhập</a>
                 </li>
                 @else
                     <li>
-                    	<a>
+                    	<a href="account">
                     		<span class ="glyphicon glyphicon-user"></span>
-                    		Bùi Đức Phú
+                    		{{Auth::user()->name}}
                     	</a>
                     </li>
 
                     <li>
-                    	<a href="#">Đăng xuất</a>
+                    	<a href="logout">Đăng xuất</a>
                     </li>
                 @endif
             </ul>

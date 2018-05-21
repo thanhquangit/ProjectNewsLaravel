@@ -10,7 +10,7 @@
             <ul>
                 @foreach($ct->type as $t)
             		<li class="list-group-item">
-            			<a href="#">{{$t->type_nname}}</a>
+            			<a href="category/{{$t->id}}">{{$t->type_nname}}</a>
             		</li>
                 @endforeach
             </ul>

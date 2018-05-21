@@ -19,10 +19,13 @@
             <!-- Preview Image -->
             <img class="img-responsive" src="upload/tintuc/{{$news->image}}" alt="">
 
-            <!-- Date/Time -->
-            <p><span class="glyphicon glyphicon-time"></span> Posted on: <?php
-					echo date_format($news->created_at,"d/m/Y H:i:s");
-					?>
+            <!-- Date/Time
+
+                    <?php
+                        //echo date_format($news->created_at,"d/m/Y H:i:s");
+                    ?>
+             -->
+            <p><span class="glyphicon glyphicon-time"></span> Posted on: {{$news->created_at}}
 			</p>
             <hr>
 
@@ -34,17 +37,36 @@
             <!-- Blog Comments -->
 
             <!-- Comments Form -->
+            @if(Auth::check())
             <div class="well">
                 <h4>Viết bình luận ...<span class="glyphicon glyphicon-pencil"></span></h4>
-                <form role="form">
+                <form role="form" action="comment/{{$news->id}}" method="post">
+                    <div class="row">
+                        @if(count($errors)>0)
+                            <div class="alert alert-danger">
+                                @foreach($errors->all() as $err)
+                                    {{$err}}<br>
+                                @endforeach
+                            </div>
+                        @endif
+
+                        <!-- In thong bao -->
+                        @if(session('notify'))
+                            <div class="alert alert-success">
+                                {{session('notify')}}
+                            </div>
+                        @endif
+                    </div>
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <div class="form-group">
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea class="form-control" rows="3" name="content"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Gửi</button>
                 </form>
             </div>
 
-            <hr>
+            <hr>    
+            @endif
 
             <!-- Posted Comments -->
 
@@ -74,12 +96,12 @@
                     <!-- item -->
 	                    <div class="row" style="margin-top: 10px;">
 	                        <div class="col-md-5">
-	                            <a href="detail.html">
+	                            <a href="detail/{{$nr->id}}">
 	                                <img class="img-responsive" src="upload/tintuc/{{$nr->image}}" alt="">
 	                            </a>
 	                        </div>
 	                        <div class="col-md-7">
-	                            <a href="#"><b>{{$nr->title}}</b></a>
+	                            <a href="detail/{{$nr->id}}"><b>{{$nr->title}}</b></a>
 	                        </div>
 	                        <p>{!!$nr->summary!!}</p>
 	                        <div class="break"></div>
@@ -95,12 +117,12 @@
                   	@foreach($news_hot as $rl)
 	                    <div class="row" style="margin-top: 10px;">
 	                        <div class="col-md-5">
-	                            <a href="detail.html">
+	                            <a href="detail/{{$rl->id}}">
 	                                <img class="img-responsive" src="upload/tintuc/{{$rl->image}}" height="" width="" alt="">
 	                            </a>
 	                        </div>
 	                        <div class="col-md-7">
-	                            <a href=""><b>{{$rl->title}}</b></a>
+	                            <a href="detail/{{$rl->id}}"><b>{{$rl->title}}</b></a>
 	                        </div>
 	                        <p>{!!$rl->summary!!}</p>
 	                        <div class="break"></div>

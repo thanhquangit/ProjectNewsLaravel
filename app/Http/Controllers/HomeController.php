@@ -54,4 +54,20 @@ class HomeController extends Controller
         else
         	return redirect('login')->with('notify','Dang nhap khong thanh cong');
     }
+    public function getLogout(){
+    	 Auth::logout();
+        return redirect('/login'); 
+    }
+    public function getAccount(){
+    	return view('layout.account');
+    }
+    public function postAccount(Request $req){
+    	$user=Auth::user();
+    	$user->name = $req->name;
+    	if($req->checkpassword == "on"){
+    		$user->password = bcrypt($req->password);
+    	}
+    	$user->save();
+    	return redirect('account')->with('notify','Change Account is successfully');
+    }
 }
